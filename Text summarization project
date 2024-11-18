@@ -1,0 +1,78 @@
+import re
+from collections import Counter
+
+# Define a list of common stopwords to exclude
+stopwords = set([
+    "i", "me", "my", "myself", "we", "our", "ours", "ourselves", "you", "your", "yours", 
+    "he", "him", "his", "she", "her", "hers", "it", "its", "they", "them", "their", "theirs", 
+    "is", "was", "be", "been", "being", "have", "has", "had", "do", "does", "did", "but", 
+    "or", "and", "so", "the", "a", "an", "in", "on", "at", "to", "for", "with", "of", "by"
+])
+
+def preprocess_text(text):
+    # Remove special characters and extra spaces
+    text = re.sub(r'\s+', ' ', text)
+    text = re.sub(r'[^\w\s]', '', text)
+    return text.lower()
+
+def get_word_frequencies(text):
+    words = text.split()
+    words = [word for word in words if word not in stopwords]
+    return Counter(words)
+
+def score_sentences(sentences, word_frequencies):
+    sentence_scores = {}
+    
+    for sentence in sentences:
+        words = sentence.split()
+        sentence_score = sum(word_frequencies.get(word.lower(), 0) for word in words)
+        
+        # Score sentence by dividing by the number of words to normalize sentence length
+        if len(words) > 0:
+            sentence_scores[sentence] = sentence_score / len(words)
+    
+    return sentence_scores
+
+def summarize_text(text, num_sentences):
+    # Split text into sentences
+    sentences = text.split('. ')
+    sentences = [sentence.strip() + '.' for sentence in sentences if sentence]
+    
+    # Preprocess text and calculate word frequencies
+    clean_text = preprocess_text(text)
+    word_frequencies = get_word_frequencies(clean_text)
+    
+    # Score each sentence based on word frequencies
+    sentence_scores = score_sentences(sentences, word_frequencies)
+    
+    # Sort sentences by score and select the top sentences
+    top_sentences = sorted(sentence_scores, key=sentence_scores.get, reverse=True)[:num_sentences]
+    
+    # Return the summary as a joined string of top sentences
+    summary = ' '.join(top_sentences)
+    return summary
+
+# Run the summarizer
+def run_summarizer():
+    print("Welcome to the Enhanced Text Summarization Tool!")
+    
+    text = input("Enter the text to summarize:\n")
+    
+    try:
+        num_sentences = int(input("Enter the number of sentences for the summary: "))
+        if num_sentences < 1:
+            print("Error: Number of sentences must be at least 1.")
+            return
+        
+        summary = summarize_text(text, num_sentences)
+        print("\nSummary:")
+        print(summary)
+    
+    except ValueError:
+        print("Error: Please enter a valid integer for the number of sentences.")
+
+# Execute the enhanced summarizer
+run_summarizer()
+
+
+
