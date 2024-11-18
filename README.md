@@ -42,7 +42,7 @@ NLP involves several tasks, such as language translation, sentiment analysis, an
 ### Installation:
 1. Clone the repository:
     ```bash
-    git clone https://github.com/Tanvi2828/text-summarization-project.git
+    git clone https://github.com/Tanvi2828/Text-Summarization-Project
     ```
 2. Navigate to the project directory:
     ```bash
