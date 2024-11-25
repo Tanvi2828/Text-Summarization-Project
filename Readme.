@@ -1,0 +1,96 @@
+# Text Summarization Tool
+
+## Overview
+This Text Summarization Tool uses advanced Natural Language Processing (NLP) techniques to generate concise summaries of large texts. It implements two types of summarization techniques:
+
+1. **Extractive Summarization**: Selects important sentences directly from the original text.
+2. **Abstractive Summarization**: Generates a new summary by paraphrasing the input text, offering a more human-like summary.
+
+This project demonstrates the power of NLP for summarizing long-form content into shorter, more digestible versions while preserving the most important information.
+
+## Key Features
+- **Extractive Summarization**: Uses TF-IDF and SpaCy to identify and rank important sentences.
+- **Abstractive Summarization**: Uses the Hugging Face's BART model to generate human-like summaries.
+- **Easy-to-use**: Input any text to receive both extractive and abstractive summaries.
+- **Scalable**: Can be used for different sizes of input text, from articles to research papers.
+
+## Technologies Used
+- **Python**: Programming language used to implement the tool.
+- **SpaCy**: NLP library used for sentence tokenization and text processing.
+- **TF-IDF Vectorizer**: Used for ranking sentences in extractive summarization.
+- **Transformers**: Hugging Face library for working with pre-trained models like BART for abstractive summarization.
+
+## Installation
+To use this tool, follow these steps:
+
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/Tanvi2828/text-summarization-tool.git
+   cd text-summarization-tool
+   ```
+
+2. Install the required dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Install SpaCy’s English model:
+   ```bash
+   python -m spacy download en_core_web_sm
+   ```
+
+4. Install Hugging Face's Transformers library:
+   ```bash
+   pip install transformers
+   ```
+
+## How to Use
+
+1. Simply input the text into the script, and the tool will provide both **extractive** and **abstractive** summaries.
+2. Example usage:
+   ```python
+   sample_text = """
+   Artificial Intelligence (AI) is transforming the way we live and work. 
+   With applications ranging from healthcare to finance, AI-powered tools 
+   are making life easier and businesses more efficient. Despite the hype, 
+   it also raises ethical concerns and challenges related to job displacement 
+   and decision-making transparency. Governments and organizations must 
+   address these issues to ensure responsible AI development.
+   """
+
+   print(extractive_summary(sample_text))
+   print(abstractive_summary(sample_text))
+   ```
+
+3. You’ll receive the following output:
+   - **Extractive Summary**: Sentences directly picked from the text.
+   - **Abstractive Summary**: A paraphrased, human-like summary.
+
+## Example
+
+**Input Text:**
+```
+Artificial Intelligence (AI) is transforming the way we live and work. With applications ranging from healthcare to finance, AI-powered tools are making life easier and businesses more efficient. Despite the hype, it also raises ethical concerns and challenges related to job displacement and decision-making transparency. Governments and organizations must address these issues to ensure responsible AI development.
+```
+
+**Extractive Summary:**
+```
+Artificial Intelligence (AI) is transforming the way we live and work. Despite the hype, it also raises ethical concerns and challenges related to job displacement and decision-making transparency.
+```
+
+**Abstractive Summary:**
+```
+AI is revolutionizing industries by improving efficiency and convenience, but ethical concerns and transparency challenges must be addressed for responsible growth.
+```
+
+## Future Improvements
+- **Multiple Language Support**: Add support for summarizing text in languages other than English.
+- **Customizable Summary Length**: Allow users to specify how long or short they want the summary to be.
+- **User Interface**: Develop a simple web or desktop application for easier interaction.
+
+## Contributing
+Feel free to open issues or pull requests if you have suggestions or improvements to make! Contributions are always welcome.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
